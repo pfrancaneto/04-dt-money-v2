@@ -1,3 +1,4 @@
+import { Dialog } from '@radix-ui/themes';
 import logoDtMoney from '../../assets/dt_money_logo.svg';
 
 import { HeaderContainer, HeaderContent, NewTransactionButton } from './styles';
@@ -8,7 +9,11 @@ export function Header() {
       <HeaderContent>
         <img src={logoDtMoney} alt="" />
 
-        <NewTransactionButton>Nova transação</NewTransactionButton>
+        <Dialog.Root>
+          <Dialog.Trigger>
+            <NewTransactionButton>Nova transação</NewTransactionButton>
+          </Dialog.Trigger>
+        </Dialog.Root>
       </HeaderContent>
     </HeaderContainer>
   );
