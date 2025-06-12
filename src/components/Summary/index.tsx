@@ -2,12 +2,12 @@ import {
   ArrowCircleDownIcon,
   ArrowCircleUpIcon,
   CurrencyDollarIcon,
-} from '@phosphor-icons/react';
+} from "@phosphor-icons/react";
 
-import { priceFormatter } from '../../utils/formatter';
-import { useSummary } from '../../hooks/useSummary';
+import { priceFormatter } from "../../utils/formatter";
+import { useSummary } from "../../hooks/useSummary";
 
-import { SummaryCard, SummaryContainer } from './styles';
+import { SummaryCard, SummaryContainer } from "./styles";
 
 export function Summary() {
   const summaryTotals = useSummary();

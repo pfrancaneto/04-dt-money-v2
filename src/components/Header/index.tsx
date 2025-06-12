@@ -1,9 +1,9 @@
-import * as Dialog from '@radix-ui/react-dialog';
-import logoDtMoney from '../../assets/dt_money_logo.svg';
+import * as Dialog from "@radix-ui/react-dialog";
+import logoDtMoney from "../../assets/dt_money_logo.svg";
 
-import { HeaderContainer, HeaderContent, NewTransactionButton } from './styles';
-import { NewTransactionModal } from '../NewTransactionModal';
-import { useState } from 'react';
+import { HeaderContainer, HeaderContent, NewTransactionButton } from "./styles";
+import { NewTransactionModal } from "../NewTransactionModal";
+import { useState } from "react";
 
 export function Header() {
   const [open, setOpen] = useState(false);

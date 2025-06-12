@@ -5,14 +5,14 @@ import {
   useEffect,
   useState,
   type ReactNode,
-} from 'react';
+} from "react";
 
-import { api } from '../lib/axios';
+import { api } from "../lib/axios";
 
 interface Transaction {
   id: number;
   description: string;
-  type: 'income' | 'outcome';
+  type: "income" | "outcome";
   price: number;
   category: string;
   createdAt: string;
@@ -34,10 +34,10 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   const fetchTransactions = useCallback(async (query?: string) => {
-    const response = await api.get('transactions', {
+    const response = await api.get("transactions", {
       params: {
-        _sort: 'createdAt',
-        _order: 'desc',
+        _sort: "createdAt",
+        _order: "desc",
         q: query,
       },
     });
@@ -71,7 +71,7 @@ export const useTransactions = () => {
 
   if (!context) {
     throw new Error(
-      'useTransactions deve ser usado dentro de um TransactionsProvider'
+      "useTransactions deve ser usado dentro de um TransactionsProvider",
     );
   }
 

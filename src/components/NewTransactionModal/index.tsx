@@ -1,15 +1,15 @@
-import { Controller, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import {
   ArrowCircleDownIcon,
   ArrowCircleUpIcon,
   X,
-} from '@phosphor-icons/react';
-import * as Dialog from '@radix-ui/react-dialog';
+} from "@phosphor-icons/react";
+import * as Dialog from "@radix-ui/react-dialog";
 
-import { api } from '../../lib/axios';
-import { useTransactions } from '../../contexts/TransactionsContext';
+import { api } from "../../lib/axios";
+import { useTransactions } from "../../contexts/TransactionsContext";
 
 import {
   CloseButton,
@@ -17,13 +17,13 @@ import {
   Overlay,
   TransactionType,
   TransactionTypeButton,
-} from './styles';
+} from "./styles";
 
 const newTransactionsModalSchema = z.object({
   description: z.string(),
   price: z.number(),
   category: z.string(),
-  type: z.enum(['income', 'outcome']),
+  type: z.enum(["income", "outcome"]),
 });
 
 type newTransactionsModalValues = z.infer<typeof newTransactionsModalSchema>;
@@ -45,14 +45,14 @@ export function NewTransactionModal({
   } = useForm<newTransactionsModalValues>({
     resolver: zodResolver(newTransactionsModalSchema),
     defaultValues: {
-      type: 'income',
+      type: "income",
     },
   });
 
   async function handleCreateNewTransaction(data: newTransactionsModalValues) {
     const { category, description, price, type } = data;
 
-    const response = await api.post('transactions', {
+    const response = await api.post("transactions", {
       category,
       description,
       price,
@@ -79,17 +79,17 @@ export function NewTransactionModal({
           <input
             type="text"
             placeholder="Descrição"
-            {...register('description')}
+            {...register("description")}
           />
           <input
             type="number"
             placeholder="Preço"
-            {...register('price', { valueAsNumber: true })}
+            {...register("price", { valueAsNumber: true })}
           />
           <input
             type="text"
             placeholder="Categoria"
-            {...register('category')}
+            {...register("category")}
           />
 
           <Controller

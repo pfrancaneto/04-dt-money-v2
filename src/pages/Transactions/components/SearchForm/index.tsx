@@ -1,12 +1,12 @@
-import { useCallback } from 'react';
-import { useForm } from 'react-hook-form';
-import { MagnifyingGlassIcon } from '@phosphor-icons/react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import { useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 
-import { useTransactions } from '../../../../contexts/TransactionsContext';
+import { useTransactions } from "../../../../contexts/TransactionsContext";
 
-import { SearchFormContainer } from './styles';
+import { SearchFormContainer } from "./styles";
 
 const searchFormSchema = z.object({
   query: z.string(),
@@ -28,7 +28,7 @@ export function SearchForm() {
     async (data: SearchFormValues) => {
       await fetchTransactions(data.query);
     },
-    []
+    [],
   );
 
   return (
@@ -36,7 +36,7 @@ export function SearchForm() {
       <input
         type="text"
         placeholder="Busque por transações"
-        {...register('query')}
+        {...register("query")}
       />
 
       <button type="submit" disabled={isSubmitting}>
