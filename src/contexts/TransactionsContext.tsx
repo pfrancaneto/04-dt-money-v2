@@ -18,6 +18,7 @@ interface Transaction {
 
 interface TransactionsContextType {
   transactions: Transaction[];
+  updateTransactions: (transaction: Transaction[]) => void;
   fetchTransactions: (query?: string) => Promise<void>;
 }
 
@@ -33,6 +34,8 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   async function fetchTransactions(query?: string) {
     const response = await api.get('transactions', {
       params: {
+        _sort: 'createdAt',
+        _order: 'desc',
         q: query,
       },
     });
@@ -44,9 +47,14 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     fetchTransactions();
   }, []);
 
+  function updateTransactions(transaction: Transaction[]) {
+    setTransactions(transaction);
+  }
+
   const values = {
     transactions,
     fetchTransactions,
+    updateTransactions,
   };
 
   return (

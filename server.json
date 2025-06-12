@@ -17,12 +17,12 @@
       "createdAt": "2025-06-11T22:17:25.760Z"
     },
     {
-      "id": 3,
-      "description": "Roupas PH",
+      "category": "Alimentação",
+      "description": "Pães",
+      "price": 15,
       "type": "outcome",
-      "category": "Vestimentos",
-      "price": 200,
-      "createdAt": "2025-06-11T22:34:25.760Z"
+      "createdAt": "2025-06-12T18:39:56.934Z",
+      "id": 3
     }
   ]
 }

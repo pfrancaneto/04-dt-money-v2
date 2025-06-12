@@ -11,6 +11,8 @@ import { ArrowCircleUpIcon } from '@phosphor-icons/react/dist/ssr';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { api } from '../../lib/axios';
+import { useTransactions } from '../../contexts/TransactionsContext';
 
 const newTransactionsModalSchema = z.object({
   description: z.string(),
@@ -22,11 +24,13 @@ const newTransactionsModalSchema = z.object({
 type newTransactionsModalValues = z.infer<typeof newTransactionsModalSchema>;
 
 export function NewTransactionModal() {
+  const { updateTransactions, transactions } = useTransactions();
   const {
     register,
     handleSubmit,
     control,
     formState: { isSubmitting },
+    reset,
   } = useForm<newTransactionsModalValues>({
     resolver: zodResolver(newTransactionsModalSchema),
     defaultValues: {
@@ -35,9 +39,18 @@ export function NewTransactionModal() {
   });
 
   async function handleCreateNewTransaction(data: newTransactionsModalValues) {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    const { category, description, price, type } = data;
 
-    console.log(data);
+    const response = await api.post('transactions', {
+      category,
+      description,
+      price,
+      type,
+      createdAt: new Date(),
+    });
+
+    reset();
+    updateTransactions([...transactions, response.data]);
   }
 
   return (
