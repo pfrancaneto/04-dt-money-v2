@@ -6,6 +6,7 @@ import {
 
 import { SummaryCard, SummaryContainer } from './styles';
 import { useTransactions } from '../../contexts/TransactionsContext';
+import { priceFormatter } from '../../utils/formatter';
 
 export function Summary() {
   const { transactions } = useTransactions();
@@ -36,7 +37,7 @@ export function Summary() {
           <span>Entradas</span>
           <ArrowCircleUpIcon size={32} color="#00b37e" />
         </header>
-        <strong>{summaryTotals.income}</strong>
+        <strong>{priceFormatter.format(summaryTotals.income)}</strong>
       </SummaryCard>
 
       <SummaryCard>
@@ -44,7 +45,7 @@ export function Summary() {
           <span>Saídas</span>
           <ArrowCircleDownIcon size={32} color="#f75a68" />
         </header>
-        <strong>{summaryTotals.outcome}</strong>
+        <strong>{priceFormatter.format(summaryTotals.outcome)}</strong>
       </SummaryCard>
 
       <SummaryCard $variant="green">
@@ -52,7 +53,7 @@ export function Summary() {
           <span>Total</span>
           <CurrencyDollarIcon size={32} color="#fff" />
         </header>
-        <strong>{summaryTotals.total}</strong>
+        <strong>{priceFormatter.format(summaryTotals.total)}</strong>
       </SummaryCard>
     </SummaryContainer>
   );
