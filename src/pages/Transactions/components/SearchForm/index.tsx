@@ -28,7 +28,7 @@ export function SearchForm() {
     async (data: SearchFormValues) => {
       await fetchTransactions(data.query);
     },
-    [],
+    []
   );
 
   return (

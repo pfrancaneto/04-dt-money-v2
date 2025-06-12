@@ -29,7 +29,10 @@ export const SearchFormContainer = styled.form`
     color: ${(props) => props.theme['green-300']};
     font-weight: bold;
     border-radius: 6px;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
 
     &:disabled {
       opacity: 0.5;

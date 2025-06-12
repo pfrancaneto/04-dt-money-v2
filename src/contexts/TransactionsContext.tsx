@@ -71,7 +71,7 @@ export const useTransactions = () => {
 
   if (!context) {
     throw new Error(
-      'useTransactions deve ser usado dentro de um TransactionsProvider',
+      'useTransactions deve ser usado dentro de um TransactionsProvider'
     );
   }
 

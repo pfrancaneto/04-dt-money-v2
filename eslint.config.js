@@ -4,6 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import erasableSyntaxOnly from 'eslint-plugin-erasable-syntax-only';
+import prettier from 'eslint-plugin-prettier';
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -17,6 +18,7 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      prettier,
     },
 
     languageOptions: {
@@ -38,10 +40,6 @@ export default tseslint.config(
           trailingComma: 'es5',
         },
       ],
-    },
-    env: {
-      browser: true,
-      es2021: true,
     },
   },
 );
