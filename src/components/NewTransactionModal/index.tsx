@@ -1,4 +1,16 @@
+import { Controller, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import {
+  ArrowCircleDownIcon,
+  ArrowCircleUpIcon,
+  X,
+} from '@phosphor-icons/react';
 import * as Dialog from '@radix-ui/react-dialog';
+
+import { api } from '../../lib/axios';
+import { useTransactions } from '../../contexts/TransactionsContext';
+
 import {
   CloseButton,
   Content,
@@ -6,13 +18,6 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from './styles';
-import { ArrowCircleDownIcon, X } from '@phosphor-icons/react';
-import { ArrowCircleUpIcon } from '@phosphor-icons/react/dist/ssr';
-import { Controller, useForm } from 'react-hook-form';
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { api } from '../../lib/axios';
-import { useTransactions } from '../../contexts/TransactionsContext';
 
 const newTransactionsModalSchema = z.object({
   description: z.string(),
@@ -23,7 +28,13 @@ const newTransactionsModalSchema = z.object({
 
 type newTransactionsModalValues = z.infer<typeof newTransactionsModalSchema>;
 
-export function NewTransactionModal() {
+type NewTransactionModalProps = {
+  onFecharModal: (value: boolean) => void;
+};
+
+export function NewTransactionModal({
+  onFecharModal,
+}: NewTransactionModalProps) {
   const { updateTransactions, transactions } = useTransactions();
   const {
     register,
@@ -51,6 +62,7 @@ export function NewTransactionModal() {
 
     reset();
     updateTransactions([...transactions, response.data]);
+    onFecharModal(false);
   }
 
   return (

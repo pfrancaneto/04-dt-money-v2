@@ -1,5 +1,6 @@
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -31,7 +32,7 @@ const TransactionsContext = createContext({} as TransactionsContextType);
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-  async function fetchTransactions(query?: string) {
+  const fetchTransactions = useCallback(async (query?: string) => {
     const response = await api.get('transactions', {
       params: {
         _sort: 'createdAt',
@@ -41,15 +42,15 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     });
 
     setTransactions(response.data);
-  }
+  }, []);
 
   useEffect(() => {
     fetchTransactions();
   }, []);
 
-  function updateTransactions(transaction: Transaction[]) {
+  const updateTransactions = useCallback((transaction: Transaction[]) => {
     setTransactions(transaction);
-  }
+  }, []);
 
   const values = {
     transactions,
@@ -64,7 +65,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   );
 }
 
-export function useTransactions() {
+export const useTransactions = () => {
   const context = useContext(TransactionsContext);
 
   if (!context) {
@@ -74,4 +75,4 @@ export function useTransactions() {
   }
 
   return context;
-}
+};

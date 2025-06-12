@@ -1,9 +1,12 @@
-import { MagnifyingGlassIcon } from '@phosphor-icons/react';
-import { SearchFormContainer } from './styles';
+import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import { MagnifyingGlassIcon } from '@phosphor-icons/react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+
 import { useTransactions } from '../../../../contexts/TransactionsContext';
+
+import { SearchFormContainer } from './styles';
 
 const searchFormSchema = z.object({
   query: z.string(),
@@ -21,9 +24,12 @@ export function SearchForm() {
     resolver: zodResolver(searchFormSchema),
   });
 
-  async function handleSearchTransactions(data: SearchFormValues) {
-    await fetchTransactions(data.query);
-  }
+  const handleSearchTransactions = useCallback(
+    async (data: SearchFormValues) => {
+      await fetchTransactions(data.query);
+    },
+    [],
+  );
 
   return (
     <SearchFormContainer onSubmit={handleSubmit(handleSearchTransactions)}>

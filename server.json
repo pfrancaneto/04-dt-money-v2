@@ -23,6 +23,22 @@
       "type": "outcome",
       "createdAt": "2025-06-12T18:39:56.934Z",
       "id": 3
+    },
+    {
+      "category": "Carro",
+      "description": "BYD",
+      "price": 120000,
+      "type": "outcome",
+      "createdAt": "2025-06-12T18:56:41.050Z",
+      "id": 4
+    },
+    {
+      "category": "Carro",
+      "description": "Venda Carro",
+      "price": 130000,
+      "type": "income",
+      "createdAt": "2025-06-12T18:57:43.016Z",
+      "id": 5
     }
   ]
 }
